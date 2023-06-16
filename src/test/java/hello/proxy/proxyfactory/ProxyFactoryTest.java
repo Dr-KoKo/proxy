@@ -65,6 +65,6 @@ public class ProxyFactoryTest {
 
         assertThat(AopUtils.isAopProxy(proxy)).isTrue();
         assertThat(AopUtils.isJdkDynamicProxy(proxy)).isFalse();
-        assertThat(AopUtils.isCglibProxy(proxy)).isTrue()   ;
+        assertThat(AopUtils.isCglibProxy(proxy)).isTrue();
     }
 }
