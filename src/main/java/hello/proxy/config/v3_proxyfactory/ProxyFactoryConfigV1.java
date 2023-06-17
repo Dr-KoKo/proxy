@@ -3,6 +3,7 @@ package hello.proxy.config.v3_proxyfactory;
 import hello.proxy.app.v1.*;
 import hello.proxy.config.v3_proxyfactory.advice.LogTraceAdvice;
 import hello.proxy.trace.logtrace.LogTrace;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.Advisor;
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
@@ -10,6 +11,7 @@ import org.springframework.aop.support.NameMatchMethodPointcut;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+@Slf4j
 @Configuration
 public class ProxyFactoryConfigV1 {
     @Bean
@@ -19,6 +21,8 @@ public class ProxyFactoryConfigV1 {
         ProxyFactory proxyFactory = new ProxyFactory(orderController);
         proxyFactory.addAdvisor(getAdvisor(logTrace));
         OrderControllerV1 proxy = (OrderControllerV1) proxyFactory.getProxy();
+
+        log.info("ProxyFactory proxy = {}, target = {}", proxy.getClass(), orderController.getClass());
 
         return proxy;
     }
@@ -31,6 +35,8 @@ public class ProxyFactoryConfigV1 {
         proxyFactory.addAdvisor(getAdvisor(logTrace));
         OrderServiceV1 proxy = (OrderServiceV1) proxyFactory.getProxy();
 
+        log.info("ProxyFactory proxy = {}, target = {}", proxy.getClass(), orderService.getClass());
+
         return proxy;
     }
 
@@ -41,6 +47,8 @@ public class ProxyFactoryConfigV1 {
         ProxyFactory proxyFactory = new ProxyFactory(orderRepository);
         proxyFactory.addAdvisor(getAdvisor(logTrace));
         OrderRepositoryV1 proxy = (OrderRepositoryV1) proxyFactory.getProxy();
+
+        log.info("ProxyFactory proxy = {}, target = {}", proxy.getClass(), orderRepository.getClass());
 
         return proxy;
     }
