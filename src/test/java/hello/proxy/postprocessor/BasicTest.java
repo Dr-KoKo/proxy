@@ -13,10 +13,13 @@ public class BasicTest {
     void basicConfig() {
         AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(BasicConfig.class);
 
+        //A는 빈으로 등록된다.
         A a = ac.getBean("beanA", A.class);
         a.helloA();
 
-        Assertions.assertThrows(NoSuchBeanDefinitionException.class, () -> ac.getBean(B.class));
+        //B는 빈으로 등록되지 않는다.
+        Assertions.assertThrows(NoSuchBeanDefinitionException.class,
+                () -> ac.getBean(B.class));
     }
 
     @Slf4j
