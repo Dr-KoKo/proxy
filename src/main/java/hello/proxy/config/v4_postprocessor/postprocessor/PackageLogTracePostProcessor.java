@@ -18,7 +18,7 @@ public class PackageLogTracePostProcessor implements BeanPostProcessor {
 
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        log.info("param beanName = {} bean = {]", beanName, bean.getClass());
+        log.info("param beanName = {} bean = {}", beanName, bean.getClass());
 
         // 프록시 적용 대상 여부 체크
         // 프록시 적용 대상이 아니면 원본을 그대로 진행
